@@ -7,6 +7,7 @@ public class InputManager : SingletonBase<InputManager>
 {
     public KeyCode walkLeft { get; set; }
     public KeyCode walkRight { get; set; }
+    public KeyCode jump { get; set; }
 
     public bool inputDetected()
     {
@@ -21,6 +22,7 @@ public class InputManager : SingletonBase<InputManager>
         SetActivated(true);
         walkLeft = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("leftKey", "A"));
         walkRight = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("rightKey", "D"));
+        jump = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("jumpKey", "Space"));
     }
 
     void Awake()

@@ -39,6 +39,15 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
         rbd.velocity = velocity;
     }
 
+    void StopMovement() 
+    {
+        if (rbd.velocity.y == 0)
+        {
+            velocity.x = 0;
+            rbd.velocity = velocity;
+        }
+    }
+
     void Movement()
     {
         if (InputManager.instance.inputDetected())
@@ -54,8 +63,7 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
                 return;
             }
         }
-        velocity.x = 0;
-        rbd.velocity = velocity;
+        StopMovement();
     }
 
     protected override void BehaveSingleton()
