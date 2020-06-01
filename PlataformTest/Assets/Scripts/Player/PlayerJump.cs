@@ -32,8 +32,9 @@ public class PlayerJump : SingletonBase<PlayerJump>
         {
             if (Input.GetKey(InputManager.instance.jump)) 
             {
-                velocity.y += jumpSpeed * Time.deltaTime;
-                Debug.Log("enter");
+                velocity = rbd.velocity;
+                velocity.y = jumpSpeed;
+                rbd.velocity = velocity;
             }
         }
     }

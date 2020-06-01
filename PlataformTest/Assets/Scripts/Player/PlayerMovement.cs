@@ -25,6 +25,7 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
 
     void PressingRight()
     {
+        velocity = rbd.velocity;
         velocity.x += characterSpeed * Time.deltaTime;
         if (velocity.x > characterSpeed)
             velocity.x = characterSpeed;
@@ -33,6 +34,7 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
 
     void PressingLeft()
     {
+        velocity = rbd.velocity;
         velocity.x -= characterSpeed * Time.deltaTime;
         if (velocity.x < -characterSpeed)
             velocity.x = -characterSpeed;
