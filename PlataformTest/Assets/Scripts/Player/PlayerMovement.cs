@@ -13,6 +13,7 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
     protected override void SingletonAwake()
     {
         base.SingletonAwake();
+        DontDestroyOnLoad(gameObject);
         velocity = Vector2.zero;
         rbd = GetComponent<Rigidbody2D>();
         SetActivated(true);
