@@ -9,6 +9,7 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
     int characterSpeed;
     Vector2 velocity;
     Rigidbody2D rbd;
+    bool direction;
 
     protected override void SingletonAwake()
     {
@@ -16,12 +17,23 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
         DontDestroyOnLoad(gameObject);
         velocity = Vector2.zero;
         rbd = GetComponent<Rigidbody2D>();
+        direction = true;
         SetActivated(true);
     }
 
     private void Awake()
     {
         SingletonAwake();
+    }
+
+    public void SetDirection(bool _direction) 
+    {
+        direction = _direction;
+    }
+
+    public bool GetDirection() 
+    {
+        return direction;
     }
 
     void PressingRight()
@@ -31,6 +43,7 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
         if (velocity.x > characterSpeed)
             velocity.x = characterSpeed;
         rbd.velocity = velocity;
+        SetDirection(true);
     }
 
     void PressingLeft()
@@ -40,6 +53,7 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
         if (velocity.x < -characterSpeed)
             velocity.x = -characterSpeed;
         rbd.velocity = velocity;
+        SetDirection(false);
     }
 
     void StopMovement() 
