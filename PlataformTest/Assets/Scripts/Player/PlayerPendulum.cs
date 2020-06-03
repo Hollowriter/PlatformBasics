@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerPendulum : SingletonBase<PlayerPendulum>
 {
     [SerializeField]
-    GameObject parentVehicle;
+    GameObject toRotate;
     Vector3 rotationVector;
     [SerializeField]
     float maxTimer;
@@ -31,32 +31,50 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
 
     void PendularMovement() 
     {
-        timer += Time.fixedDeltaTime;
         switch (phase)
         {
             case 0:
                 rotationVector.z = speed * (1 - timer);
+                Debug.Log("Case0: " + rotationVector.z);
                 break;
             case 1:
                 rotationVector.z = -speed * timer;
+                Debug.Log("Case1: " + rotationVector.z);
                 break;
             case 2:
                 rotationVector.z = -speed * (1 - timer);
+                Debug.Log("Case2: " + rotationVector.z);
                 break;
             case 3:
                 rotationVector.z = speed * timer;
+                Debug.Log("Case3: " + rotationVector.z);
                 break;
         }
-        transform.Rotate(rotationVector);
+        toRotate.transform.Rotate(rotationVector);
     }
 
     void PhaseController() 
     {
+        timer += Time.fixedDeltaTime;
         if (timer > maxTimer)
         {
             phase++;
             phase %= 4;
             timer = 0f;
         }
+    }
+
+    protected override void BehaveSingleton()
+    {
+        if (GetActivated())
+        {
+            PhaseController();
+            PendularMovement();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        BehaveSingleton();
     }
 }
