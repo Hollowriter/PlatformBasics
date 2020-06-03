@@ -28,11 +28,11 @@ public class PlayerJump : SingletonBase<PlayerJump>
         SingletonAwake();
     }
 
-    void Jump() 
+    void Jump()
     {
-        if (InputManager.instance.inputDetected()) 
+        if (InputManager.instance.inputDetected())
         {
-            if (Input.GetKey(InputManager.instance.jump) && !pressingStopped && jumpTime < maxJumpTime) 
+            if (Input.GetKey(InputManager.instance.jump) && !pressingStopped && jumpTime < maxJumpTime)
             {
                 velocity = rbd.velocity;
                 velocity.y = jumpSpeed;
@@ -42,21 +42,26 @@ public class PlayerJump : SingletonBase<PlayerJump>
         }
     }
 
-    void CheckJump() 
+    void CheckJump()
     {
-        if (Input.GetKeyUp(InputManager.instance.jump) && jumpTime > 0) 
+        if (Input.GetKeyUp(InputManager.instance.jump) && jumpTime > 0)
         {
             pressingStopped = true;
         }
     }
 
-    void ResetJump() 
+    void ResetJump()
     {
-        if (rbd.velocity.y == 0 && pressingStopped == true || rbd.velocity.y == 0 && jumpTime >= maxJumpTime) 
+        if (rbd.velocity.y == 0 && pressingStopped == true || rbd.velocity.y == 0 && jumpTime >= maxJumpTime)
         {
             pressingStopped = false;
             jumpTime = 0;
         }
+    }
+
+    public bool PressingStopped() 
+    {
+        return pressingStopped;
     }
 
     protected override void BehaveSingleton()

@@ -43,7 +43,8 @@ public class PlayerAttack : SingletonBase<PlayerAttack>
     {
         if (InputManager.instance.inputDetected())
         {
-            if (Input.GetKey(InputManager.instance.attack) && !attackObject.activeInHierarchy)
+            if (Input.GetKey(InputManager.instance.attack) && !attackObject.activeInHierarchy 
+                && (PlayerPendulum.instance == null || !PlayerPendulum.instance.GetActivated()))
             {
                 returning = false;
                 attackObject.SetActive(true);

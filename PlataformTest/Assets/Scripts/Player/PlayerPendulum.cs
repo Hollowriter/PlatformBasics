@@ -12,8 +12,8 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
     [SerializeField]
     float speed;
     int phase;
-    bool colliding;
     float timer;
+    bool pressed;
 
     protected override void SingletonAwake()
     {
@@ -21,7 +21,7 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         rotationVector = Vector3.zero;
         phase = 0;
         timer = 0;
-        colliding = false;
+        pressed = false;
     }
 
     private void Awake()
@@ -35,19 +35,15 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         {
             case 0:
                 rotationVector.z = speed * (1 - timer);
-                Debug.Log("Case0: " + rotationVector.z);
                 break;
             case 1:
                 rotationVector.z = -speed * timer;
-                Debug.Log("Case1: " + rotationVector.z);
                 break;
             case 2:
                 rotationVector.z = -speed * (1 - timer);
-                Debug.Log("Case2: " + rotationVector.z);
                 break;
             case 3:
                 rotationVector.z = speed * timer;
-                Debug.Log("Case3: " + rotationVector.z);
                 break;
         }
         toRotate.transform.Rotate(rotationVector);
@@ -64,8 +60,35 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         }
     }
 
+    /*void SwitchPendulum() 
+    {
+        if (InputManager.instance.inputDetected() && !pressed)
+        {
+            if (Input.GetKey(InputManager.instance.jump) && PlayerJump.instance.PressingStopped())
+            {
+                if (!GetActivated())
+                {
+                    SetActivated(true);
+                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                }
+                else
+                {
+                    SetActivated(false);
+                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+                }
+                pressed = true;
+            }
+        }
+        if (Input.GetKeyUp(InputManager.instance.jump)) 
+        {
+            Debug.Log("deactivated");
+            pressed = false;
+        }
+    }*/
+
     protected override void BehaveSingleton()
     {
+        // SwitchPendulum(); // FIJARME COMO ACTIVAR Y DESACTIVAR EL MOVIMIENTO DE PENDULO SIN JODER EL SALTO
         if (GetActivated())
         {
             PhaseController();
