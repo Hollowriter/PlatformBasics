@@ -19,5 +19,16 @@ public class PlayerCollisions : SingletonBase<PlayerCollisions>
                 collision.gameObject.SetActive(false);
             }
         }
+
+        /*if (collision.gameObject.tag == "Floor") 
+        {
+            if (PlayerPendulum.instance != null) 
+            {
+                switch (PlayerPendulum.instance.GetPhase()) 
+                {
+                    
+                }
+            }
+        }*/
     }
 }

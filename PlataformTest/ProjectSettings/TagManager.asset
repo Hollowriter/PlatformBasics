@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Attack
   - Coin
+  - Floor
   layers:
   - Default
   - TransparentFX

@@ -91,6 +91,7 @@ public class PlayerJump : SingletonBase<PlayerJump>
                     stoppedHooking = true;
                     this.gameObject.GetComponent<Rigidbody2D>().gravityScale = GRAVITYSCALE;
                     hooking = false;
+                    PlayerPendulum.instance.StopPendularMovement();
                     PlayerPendulum.instance.SetActivated(false);
                     velocity = rbd.velocity;
                     velocity.y = jumpSpeed;

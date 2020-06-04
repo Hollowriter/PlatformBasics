@@ -85,7 +85,10 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
 
     protected override void BehaveSingleton()
     {
-        Movement();
+        if (!PlayerPendulum.instance.GetActivated())
+        {
+            Movement();
+        }
     }
 
     private void Update()
