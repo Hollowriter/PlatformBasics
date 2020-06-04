@@ -54,7 +54,6 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         timer += Time.fixedDeltaTime;
         if (timer > maxTimer)
         {
-            Debug.Log(rotationVector.z);
             phase++;
             phase %= 4;
             timer = 0f;
@@ -73,8 +72,9 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
 
     public void StopPendularMovement() 
     {
-        rotationVector.z = 0;
-        toRotate.transform.Rotate(rotationVector);
+        timer = 0;
+        phase = 0;
+        toRotate.transform.rotation = Quaternion.identity;
     }
 
     protected override void BehaveSingleton()
