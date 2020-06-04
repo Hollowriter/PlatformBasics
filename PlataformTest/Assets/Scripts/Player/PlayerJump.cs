@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Runtime.CompilerServices;
 
 public class PlayerJump : SingletonBase<PlayerJump>
 {
@@ -11,16 +12,24 @@ public class PlayerJump : SingletonBase<PlayerJump>
     [SerializeField]
     float maxJumpTime;
     float jumpTime;
-    bool pressingStopped;
+    bool firstJump;
+    bool hooking;
+    bool pressingHooking;
+    bool stoppedHooking;
     Vector2 velocity;
     Rigidbody2D rbd;
+    float GRAVITYSCALE;
 
     protected override void SingletonAwake()
     {
         base.SingletonAwake();
         jumpTime = 0;
         rbd = GetComponent<Rigidbody2D>();
-        pressingStopped = false;
+        GRAVITYSCALE = rbd.gravityScale;
+        firstJump = false;
+        hooking = false;
+        pressingHooking = false;
+        stoppedHooking = false;
     }
 
     private void Awake()
@@ -32,7 +41,7 @@ public class PlayerJump : SingletonBase<PlayerJump>
     {
         if (InputManager.instance.inputDetected())
         {
-            if (Input.GetKey(InputManager.instance.jump) && !pressingStopped && jumpTime < maxJumpTime)
+            if (Input.GetKey(InputManager.instance.jump) && !firstJump && jumpTime < maxJumpTime)
             {
                 velocity = rbd.velocity;
                 velocity.y = jumpSpeed;
@@ -46,27 +55,61 @@ public class PlayerJump : SingletonBase<PlayerJump>
     {
         if (Input.GetKeyUp(InputManager.instance.jump) && jumpTime > 0)
         {
-            pressingStopped = true;
+            firstJump = true;
         }
     }
 
     void ResetJump()
     {
-        if (rbd.velocity.y == 0 && pressingStopped == true || rbd.velocity.y == 0 && jumpTime >= maxJumpTime)
+        if ((rbd.velocity.y == 0 && firstJump == true || rbd.velocity.y == 0 && jumpTime >= maxJumpTime) &&
+            hooking == false)
         {
-            pressingStopped = false;
+            firstJump = false;
+            stoppedHooking = false;
             jumpTime = 0;
         }
     }
 
-    public bool PressingStopped() 
+    void HookPendulum() 
     {
-        return pressingStopped;
+        if (InputManager.instance.inputDetected() && PlayerPendulum.instance != null)
+        {
+            if (Input.GetKey(InputManager.instance.jump) && firstJump && !stoppedHooking && !pressingHooking)
+            {
+                if (!hooking)
+                {
+                    hooking = true;
+                    PlayerPendulum.instance.SetActivated(true);
+                    velocity = rbd.velocity;
+                    velocity.y = 0;
+                    rbd.velocity = velocity;
+                    jumpTime = 0;
+                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                }
+                else 
+                {
+                    stoppedHooking = true;
+                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = GRAVITYSCALE;
+                    hooking = false;
+                    PlayerPendulum.instance.SetActivated(false);
+                    velocity = rbd.velocity;
+                    velocity.y = jumpSpeed;
+                    rbd.velocity = velocity;
+                    jumpTime += 1 * Time.deltaTime;
+                }
+                pressingHooking = true;
+            }
+        }
+        if (Input.GetKeyUp(InputManager.instance.jump)) 
+        {
+            pressingHooking = false;
+        }
     }
 
     protected override void BehaveSingleton()
     {
         Jump();
+        HookPendulum();
         CheckJump();
         ResetJump();
     }

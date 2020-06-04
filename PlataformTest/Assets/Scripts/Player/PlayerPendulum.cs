@@ -60,35 +60,8 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         }
     }
 
-    /*void SwitchPendulum() 
-    {
-        if (InputManager.instance.inputDetected() && !pressed)
-        {
-            if (Input.GetKey(InputManager.instance.jump) && PlayerJump.instance.PressingStopped())
-            {
-                if (!GetActivated())
-                {
-                    SetActivated(true);
-                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-                }
-                else
-                {
-                    SetActivated(false);
-                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
-                }
-                pressed = true;
-            }
-        }
-        if (Input.GetKeyUp(InputManager.instance.jump)) 
-        {
-            Debug.Log("deactivated");
-            pressed = false;
-        }
-    }*/
-
     protected override void BehaveSingleton()
     {
-        // SwitchPendulum(); // FIJARME COMO ACTIVAR Y DESACTIVAR EL MOVIMIENTO DE PENDULO SIN JODER EL SALTO
         if (GetActivated())
         {
             PhaseController();
