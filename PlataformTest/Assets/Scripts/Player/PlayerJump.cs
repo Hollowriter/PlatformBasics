@@ -94,7 +94,7 @@ public class PlayerJump : SingletonBase<PlayerJump>
                     PlayerPendulum.instance.SetActivated(false);
                     PlayerPendulum.instance.StopPendularMovement();
                     velocity = rbd.velocity;
-                    velocity.y = jumpSpeed;
+                    velocity.y = jumpSpeed * 2;
                     rbd.velocity = velocity;
                     jumpTime += 1 * Time.deltaTime;
                 }

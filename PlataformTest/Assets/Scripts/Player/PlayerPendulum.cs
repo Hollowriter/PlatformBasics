@@ -6,6 +6,10 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
 {
     [SerializeField]
     GameObject toRotate;
+    [SerializeField]
+    GameObject haloSprite;
+    [SerializeField]
+    GameObject ropeSprite;
     Vector3 rotationVector;
     [SerializeField]
     float maxTimer;
@@ -22,11 +26,22 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         phase = 0;
         timer = 0;
         pressed = false;
+        haloSprite.gameObject.SetActive(false);
+        ropeSprite.gameObject.SetActive(false);
     }
 
     private void Awake()
     {
         SingletonAwake();
+    }
+
+    void PendularSprites() 
+    {
+        if (!haloSprite.gameObject.activeInHierarchy || !ropeSprite.gameObject.activeInHierarchy) 
+        {
+            haloSprite.gameObject.SetActive(true);
+            ropeSprite.gameObject.SetActive(true);
+        }
     }
 
     void PendularMovement() 
@@ -75,6 +90,8 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         timer = 0;
         phase = 0;
         toRotate.transform.rotation = Quaternion.identity;
+        haloSprite.gameObject.SetActive(false);
+        ropeSprite.gameObject.SetActive(false);
     }
 
     protected override void BehaveSingleton()
@@ -83,6 +100,7 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         {
             PhaseController();
             PendularMovement();
+            PendularSprites();
         }
     }
 

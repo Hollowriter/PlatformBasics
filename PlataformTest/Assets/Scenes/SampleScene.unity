@@ -446,6 +446,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toRotate: {fileID: 1296657471}
+  haloSprite: {fileID: 888112503}
+  ropeSprite: {fileID: 1800444562}
   maxTimer: 1
   speed: 3
 --- !u!1001 &244067667
