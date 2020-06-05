@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyCollisions : ElementBase
 {
-    // Start is called before the first frame update
     void Awake()
     {
         ElementAwake();

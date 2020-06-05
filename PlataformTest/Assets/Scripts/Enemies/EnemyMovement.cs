@@ -9,17 +9,29 @@ public class EnemyMovement : ElementBase
     [SerializeField]
     float enemySpeed;
     bool chasing;
+    bool direction;
 
     protected override void ElementAwake()
     {
         base.ElementAwake();
         target = PlayerMovement.instance.gameObject.GetComponent<Transform>();
         chasing = false;
+        direction = false;
     }
 
     private void Awake()
     {
         ElementAwake();
+    }
+
+    public void SetChase(bool _chase)
+    {
+        chasing = _chase;
+    }
+
+    public bool GetChase() 
+    {
+        return chasing;
     }
 
     void Chase() 
