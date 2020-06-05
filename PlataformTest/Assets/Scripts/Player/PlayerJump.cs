@@ -84,11 +84,14 @@ public class PlayerJump : SingletonBase<PlayerJump>
                     velocity.y = 0;
                     rbd.velocity = velocity;
                     jumpTime = 0;
+                    rbd.constraints = RigidbodyConstraints2D.FreezePosition;
                     this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
                 }
                 else 
                 {
                     stoppedHooking = true;
+                    rbd.constraints = RigidbodyConstraints2D.None;
+                    rbd.constraints = RigidbodyConstraints2D.FreezeRotation;
                     this.gameObject.GetComponent<Rigidbody2D>().gravityScale = GRAVITYSCALE;
                     hooking = false;
                     PlayerPendulum.instance.SetActivated(false);
