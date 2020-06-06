@@ -8,63 +8,24 @@ public class EnemyMovement : ElementBase
     protected Transform target;
     [SerializeField]
     protected float enemySpeed;
-    protected bool chasing;
+    protected bool attacking;
     protected bool direction;
 
-    /*protected override void ElementAwake()
+    public void SetAttacking(bool _attacking)
     {
-        base.ElementAwake();
-        target = PlayerMovement.instance.gameObject.GetComponent<Transform>();
-        chasing = false;
-        direction = false;
+        attacking = _attacking;
     }
 
-    private void Awake()
+    public bool GetAttacking() 
     {
-        ElementAwake();
-    }*/
-
-    public void SetChase(bool _chase)
-    {
-        chasing = _chase;
-    }
-
-    public bool GetChase() 
-    {
-        return chasing;
+        return attacking;
     }
 
     protected virtual void AttackPlayer() 
     {
-        /*float distance = Vector3.Distance(transform.position, target.position);
-        Vector3 dir = target.position - transform.position;
-        dir.y = 0.0f;
-        dir.Normalize();
-        if (distance > 0) 
-        {
-            transform.position += dir * enemySpeed * Time.deltaTime;
-        }*/
     }
 
     protected virtual void Moving() 
     {
-        
     }
-
-    /*protected override void ElementBehave()
-    {
-        if (!chasing)
-        {
-            Moving();
-        }
-        else 
-        {
-            Chase();
-        }
-    }
-
-    private void Update()
-    {
-        ElementBehave();
-    }*/
 }

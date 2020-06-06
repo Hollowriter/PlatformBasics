@@ -13,7 +13,7 @@ public class EnemyMelee : EnemyMovement
     {
         base.ElementAwake();
         target = PlayerMovement.instance.gameObject.GetComponent<Transform>();
-        chasing = false;
+        attacking = false;
         direction = false;
     }
 
@@ -72,7 +72,7 @@ public class EnemyMelee : EnemyMovement
 
     protected override void ElementBehave()
     {
-        if (!chasing)
+        if (!attacking)
         {
             Moving();
         }

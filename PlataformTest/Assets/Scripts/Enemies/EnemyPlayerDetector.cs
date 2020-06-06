@@ -17,7 +17,15 @@ public class EnemyPlayerDetector : ElementBase
     {
         if (collision.gameObject.tag == "Player") 
         {
-            enemyDad.GetComponent<EnemyMovement>().SetChase(true);
+            enemyDad.GetComponent<EnemyMovement>().SetAttacking(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            enemyDad.GetComponent<EnemyMovement>().SetAttacking(false);
         }
     }
 }
