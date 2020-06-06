@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class EnemyMovement : ElementBase
 {
-    Transform target;
+    protected Transform target;
     [SerializeField]
-    float enemySpeed;
-    bool chasing;
-    bool direction;
+    protected float enemySpeed;
+    protected bool chasing;
+    protected bool direction;
 
-    protected override void ElementAwake()
+    /*protected override void ElementAwake()
     {
         base.ElementAwake();
         target = PlayerMovement.instance.gameObject.GetComponent<Transform>();
@@ -22,7 +22,7 @@ public class EnemyMovement : ElementBase
     private void Awake()
     {
         ElementAwake();
-    }
+    }*/
 
     public void SetChase(bool _chase)
     {
@@ -34,24 +34,24 @@ public class EnemyMovement : ElementBase
         return chasing;
     }
 
-    void Chase() 
+    protected virtual void AttackPlayer() 
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        /*float distance = Vector3.Distance(transform.position, target.position);
         Vector3 dir = target.position - transform.position;
         dir.y = 0.0f;
         dir.Normalize();
         if (distance > 0) 
         {
             transform.position += dir * enemySpeed * Time.deltaTime;
-        }
+        }*/
     }
 
-    void Moving() 
+    protected virtual void Moving() 
     {
         
     }
 
-    protected override void ElementBehave()
+    /*protected override void ElementBehave()
     {
         if (!chasing)
         {
@@ -66,5 +66,5 @@ public class EnemyMovement : ElementBase
     private void Update()
     {
         ElementBehave();
-    }
+    }*/
 }
