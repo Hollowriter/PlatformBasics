@@ -76,32 +76,35 @@ public class PlayerJump : SingletonBase<PlayerJump>
         {
             if (Input.GetKey(InputManager.instance.jump) && firstJump && !stoppedHooking && !pressingHooking)
             {
-                if (!hooking)
+                if (PlayerPendulum.instance.GetCollectionConfirmation())
                 {
-                    hooking = true;
-                    PlayerPendulum.instance.SetActivated(true);
-                    velocity = rbd.velocity;
-                    velocity.y = 0;
-                    rbd.velocity = velocity;
-                    jumpTime = 0;
-                    rbd.constraints = RigidbodyConstraints2D.FreezePosition;
-                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                    if (!hooking)
+                    {
+                        hooking = true;
+                        PlayerPendulum.instance.SetActivated(true);
+                        velocity = rbd.velocity;
+                        velocity.y = 0;
+                        rbd.velocity = velocity;
+                        jumpTime = 0;
+                        rbd.constraints = RigidbodyConstraints2D.FreezePosition;
+                        this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+                    }
+                    else
+                    {
+                        stoppedHooking = true;
+                        rbd.constraints = RigidbodyConstraints2D.None;
+                        rbd.constraints = RigidbodyConstraints2D.FreezeRotation;
+                        this.gameObject.GetComponent<Rigidbody2D>().gravityScale = GRAVITYSCALE;
+                        hooking = false;
+                        PlayerPendulum.instance.SetActivated(false);
+                        PlayerPendulum.instance.StopPendularMovement();
+                        velocity = rbd.velocity;
+                        velocity.y = jumpSpeed * 2;
+                        rbd.velocity = velocity;
+                        jumpTime += 1 * Time.deltaTime;
+                    }
+                    pressingHooking = true;
                 }
-                else 
-                {
-                    stoppedHooking = true;
-                    rbd.constraints = RigidbodyConstraints2D.None;
-                    rbd.constraints = RigidbodyConstraints2D.FreezeRotation;
-                    this.gameObject.GetComponent<Rigidbody2D>().gravityScale = GRAVITYSCALE;
-                    hooking = false;
-                    PlayerPendulum.instance.SetActivated(false);
-                    PlayerPendulum.instance.StopPendularMovement();
-                    velocity = rbd.velocity;
-                    velocity.y = jumpSpeed * 2;
-                    rbd.velocity = velocity;
-                    jumpTime += 1 * Time.deltaTime;
-                }
-                pressingHooking = true;
             }
         }
         if (Input.GetKeyUp(InputManager.instance.jump)) 

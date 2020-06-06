@@ -19,6 +19,15 @@ public class PlayerCollisions : SingletonBase<PlayerCollisions>
                 collision.gameObject.SetActive(false);
             }
         }
+
+        if (collision.gameObject.tag == "Pendulum") 
+        {
+            if (collision.gameObject.activeInHierarchy)
+            {
+                PlayerPendulum.instance.SetCollectionConfirmation(true);
+                collision.gameObject.SetActive(false);
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

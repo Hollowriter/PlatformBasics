@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Floor
   - Enemy
+  - Pendulum
   layers:
   - Default
   - TransparentFX

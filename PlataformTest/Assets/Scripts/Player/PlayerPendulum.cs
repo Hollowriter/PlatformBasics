@@ -18,6 +18,7 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
     int phase;
     float timer;
     bool pressed;
+    bool collectableCollected;
 
     protected override void SingletonAwake()
     {
@@ -26,6 +27,7 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
         phase = 0;
         timer = 0;
         pressed = false;
+        collectableCollected = false;
         haloSprite.gameObject.SetActive(false);
         ropeSprite.gameObject.SetActive(false);
     }
@@ -83,6 +85,16 @@ public class PlayerPendulum : SingletonBase<PlayerPendulum>
     public int GetPhase() 
     {
         return phase;
+    }
+
+    public void SetCollectionConfirmation(bool _collectableCollected) 
+    {
+        collectableCollected = _collectableCollected;
+    }
+
+    public bool GetCollectionConfirmation() 
+    {
+        return collectableCollected;
     }
 
     public void StopPendularMovement() 
