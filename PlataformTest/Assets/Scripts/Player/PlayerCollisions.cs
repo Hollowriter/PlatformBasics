@@ -20,4 +20,16 @@ public class PlayerCollisions : SingletonBase<PlayerCollisions>
             }
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            if (collision.gameObject.activeInHierarchy && !PlayerInvulnerability.instance.GetActivated())
+            {
+                PlayerHealth.instance.SetHealth(PlayerHealth.instance.GetHealth() - 1);
+                PlayerInvulnerability.instance.SetActivated(true);
+            }
+        }
+    }
 }
