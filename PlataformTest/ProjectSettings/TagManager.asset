@@ -9,6 +9,7 @@ TagManager:
   - Floor
   - Enemy
   - Pendulum
+  - Bullet
   layers:
   - Default
   - TransparentFX
