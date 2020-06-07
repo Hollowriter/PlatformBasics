@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Pendulum
   - Bullet
+  - Passage
   layers:
   - Default
   - TransparentFX
