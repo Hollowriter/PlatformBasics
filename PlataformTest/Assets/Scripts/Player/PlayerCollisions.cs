@@ -28,6 +28,19 @@ public class PlayerCollisions : SingletonBase<PlayerCollisions>
                 collision.gameObject.SetActive(false);
             }
         }
+
+        if (collision.gameObject.tag == "Bullet") 
+        {
+            if (collision.gameObject.activeInHierarchy)
+            {
+                if (!PlayerInvulnerability.instance.GetActivated())
+                {
+                    PlayerHealth.instance.SetHealth(PlayerHealth.instance.GetHealth() - 1);
+                    PlayerInvulnerability.instance.SetActivated(true);
+                }
+                collision.gameObject.SetActive(false);
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

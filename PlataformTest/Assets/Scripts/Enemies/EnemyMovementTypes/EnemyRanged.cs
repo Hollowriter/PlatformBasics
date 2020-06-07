@@ -5,8 +5,10 @@ using UnityEngine;
 public class EnemyRanged : EnemyMovement
 {
     [SerializeField]
-    int bulletsPerSecond;
-    int bulletTimer;
+    GameObject bullet;
+    [SerializeField]
+    int secondsPerBullet;
+    float bulletTimer;
     protected override void ElementAwake()
     {
         base.ElementAwake();
@@ -21,15 +23,44 @@ public class EnemyRanged : EnemyMovement
         ElementAwake();
     }
 
+    void BulletTimer() 
+    {
+        bulletTimer += 1 * Time.deltaTime;
+        if (bulletTimer > secondsPerBullet) 
+        {
+            bulletTimer = 0;
+        }
+    }
+
+    void CheckTargetDirection() 
+    {
+        if (target.position.x - transform.position.x > 0)
+        {
+            direction = true;
+        }
+        else
+        {
+            direction = false;
+        }
+    }
+
     protected override void AttackPlayer()
     {
+        if (bulletTimer == 0)
+        {
+            GameObject shot = (GameObject)Instantiate(bullet, transform.position, transform.rotation);
+            EnemyBullet shotBehaviour = shot.GetComponent<EnemyBullet>();
+            shotBehaviour.SetDirection(direction);
+        }
     }
 
     protected override void ElementBehave()
     {
         if (attacking)
         {
+            CheckTargetDirection();
             AttackPlayer();
+            BulletTimer();
         }
     }
 
