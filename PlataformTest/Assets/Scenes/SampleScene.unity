@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 163267371}
   - component: {fileID: 163267372}
   - component: {fileID: 163267366}
+  - component: {fileID: 163267373}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -490,6 +491,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerability: 3
+--- !u!114 &163267373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163267362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26ebaa3fe45601d41841a1b3d9a1f674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 940342662}
+  flickerLimit: 1
 --- !u!1001 &244067667
 PrefabInstance:
   m_ObjectHideFlags: 0
