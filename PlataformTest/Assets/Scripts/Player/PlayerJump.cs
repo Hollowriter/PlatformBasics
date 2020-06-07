@@ -87,6 +87,8 @@ public class PlayerJump : SingletonBase<PlayerJump>
                         rbd.velocity = velocity;
                         jumpTime = 0;
                         rbd.constraints = RigidbodyConstraints2D.FreezePosition;
+                        rbd.constraints = RigidbodyConstraints2D.None;
+                        rbd.constraints = RigidbodyConstraints2D.FreezePositionY;
                         this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
                     }
                     else

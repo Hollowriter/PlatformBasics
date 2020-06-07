@@ -83,6 +83,11 @@ public class PlayerMovement : SingletonBase<PlayerMovement>
         StopMovement();
     }
 
+    public void StopPlayerMovement() 
+    {
+        rbd.velocity = Vector2.zero;
+    }
+
     protected override void BehaveSingleton()
     {
         if (!PlayerPendulum.instance.GetActivated())

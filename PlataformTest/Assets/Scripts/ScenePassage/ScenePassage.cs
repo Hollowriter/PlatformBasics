@@ -21,6 +21,7 @@ public class ScenePassage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player") 
         {
+            PlayerMovement.instance.StopPlayerMovement();
             if (sceneName == menuSceneName)
                 DeleteAndReset();
             SceneManager.LoadScene(sceneName);
