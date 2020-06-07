@@ -15,7 +15,7 @@ public class CollectableCounter : SingletonBase<CollectableCounter>
         base.SingletonAwake();
         DontDestroyOnLoad(gameObject);
         numberOfCollectables = 0;
-        collectableText.text = numberOfCollectables.ToString();
+        collectableText.text = "Coins: " + numberOfCollectables.ToString();
     }
 
     private void Awake()
@@ -26,7 +26,7 @@ public class CollectableCounter : SingletonBase<CollectableCounter>
     public void SetNumberOfCollectables(int _numberOfCollectables) 
     {
         numberOfCollectables = _numberOfCollectables;
-        collectableText.text = numberOfCollectables.ToString();
+        collectableText.text = "Coins: " + numberOfCollectables.ToString();
     }
 
     public int GetNumberOfCollectables() 

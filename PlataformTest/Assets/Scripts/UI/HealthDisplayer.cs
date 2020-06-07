@@ -15,7 +15,7 @@ public class HealthDisplayer : SingletonBase<HealthDisplayer>
 
     void DisplayHealth() 
     {
-        healthText.text = PlayerHealth.instance.GetHealth().ToString();
+        healthText.text = "Health: " + PlayerHealth.instance.GetHealth().ToString();
     }
 
     protected override void BehaveSingleton()
