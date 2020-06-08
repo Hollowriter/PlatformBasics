@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : SingletonBase<PlayerHealth>
 {
@@ -26,10 +27,23 @@ public class PlayerHealth : SingletonBase<PlayerHealth>
         {
             health = maximumHealth;
         }
+        CheckDeath();
     }
 
     public int GetHealth() 
     {
         return health;
+    }
+
+    void CheckDeath()
+    {
+        if (GetHealth() <= 0)
+        {
+            Destroy(GameObject.Find("Main Camera"));
+            Destroy(GameObject.Find("InputManager"));
+            Destroy(GameObject.Find("Player"));
+            Destroy(GameObject.Find("UI"));
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

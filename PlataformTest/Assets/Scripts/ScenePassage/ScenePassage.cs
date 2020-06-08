@@ -14,7 +14,7 @@ public class ScenePassage : MonoBehaviour
         Destroy(GameObject.Find("Main Camera"));
         Destroy(GameObject.Find("InputManager"));
         Destroy(GameObject.Find("Player"));
-        Destroy(GameObject.Find("Canvas"));
+        Destroy(GameObject.Find("UI"));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
