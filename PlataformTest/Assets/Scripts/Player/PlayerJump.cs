@@ -70,6 +70,13 @@ public class PlayerJump : SingletonBase<PlayerJump>
         }
     }
 
+    public void ForcedResetJump() 
+    {
+        firstJump = false;
+        stoppedHooking = false;
+        jumpTime = 0;
+    }
+
     void HookPendulum() 
     {
         if (InputManager.instance.inputDetected() && PlayerPendulum.instance != null)

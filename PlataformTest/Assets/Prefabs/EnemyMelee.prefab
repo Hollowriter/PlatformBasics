@@ -126,8 +126,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08143163, y: -0.08248997}
-  m_Size: {x: 4.5589385, y: 4.5589385}
+  m_Offset: {x: 0.07879448, y: -0.08248997}
+  m_Size: {x: 6.8886795, y: 6.8886795}
   m_Direction: 0
 --- !u!114 &3514034209124669211
 MonoBehaviour:
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 3514034210168690625}
   - component: {fileID: 3514034210168690684}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyMelee
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,6 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a84361a987b3534ea39f11183b98ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 2
+  enemySpeed: 4
   pointA: {fileID: 0}
   pointB: {fileID: 0}

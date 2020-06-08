@@ -41,6 +41,14 @@ public class PlayerCollisions : SingletonBase<PlayerCollisions>
                 collision.gameObject.SetActive(false);
             }
         }
+
+        if (collision.gameObject.tag == "Floor") 
+        {
+            if (collision.gameObject.activeInHierarchy) 
+            {
+                PlayerJump.instance.ForcedResetJump();
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -51,6 +59,14 @@ public class PlayerCollisions : SingletonBase<PlayerCollisions>
             {
                 PlayerHealth.instance.SetHealth(PlayerHealth.instance.GetHealth() - 1);
                 PlayerInvulnerability.instance.SetActivated(true);
+            }
+        }
+
+        if (collision.gameObject.tag == "Floor")
+        {
+            if (collision.gameObject.activeInHierarchy)
+            {
+                PlayerJump.instance.ForcedResetJump();
             }
         }
     }

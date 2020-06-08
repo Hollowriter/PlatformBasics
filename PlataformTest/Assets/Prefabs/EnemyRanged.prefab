@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpeed: 0
   bullet: {fileID: 8446328462999295756, guid: 5f07158a137175d4c822a283c5c058db, type: 3}
-  secondsPerBullet: 3
+  secondsPerBullet: 2
 --- !u!61 &5417864194505067973
 BoxCollider2D:
   m_ObjectHideFlags: 0
