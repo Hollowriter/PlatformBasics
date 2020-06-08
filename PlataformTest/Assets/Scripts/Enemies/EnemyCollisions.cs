@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyCollisions : ElementBase
 {
+    [SerializeField]
+    GameObject enemyParent;
     void Awake()
     {
         ElementAwake();
@@ -13,7 +15,7 @@ public class EnemyCollisions : ElementBase
     {
         if (collision.gameObject.tag == "Attack") 
         {
-            this.gameObject.SetActive(false);
+            enemyParent.SetActive(false);
         }
     }
 }

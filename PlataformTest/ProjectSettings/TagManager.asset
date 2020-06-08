@@ -11,6 +11,8 @@ TagManager:
   - Pendulum
   - Bullet
   - Passage
+  - Detector
+  - Weak
   layers:
   - Default
   - TransparentFX
